@@ -1,0 +1,26 @@
+# ignore everything
+*
+# except these files...
+!.gitignore
+!*.py
+!*.jl
+!*.sh
+!*.ipynb
+!*.r
+!*.json
+!*.md
+!*.csvx   
+!*.png
+
+# ...even if they are in subdirectories
+!*/
+
+# ... unl;ess the directory is one of these
+/.vscode/
+/.ipynb_checkpoints/
+/bin/
+/tmp/
+
+# ignore these specific annoying jsons
+.config/configstore/update-notifier-npm.json
+.local/share/jupyter/runtime/nbserver-1.json
