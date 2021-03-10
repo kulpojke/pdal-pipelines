@@ -1,7 +1,7 @@
 {
         "pipeline": [
             {
-                "bounds": "([-13194674.4781,-13184336.3701],[4028154.9536,4037117.1952])",
+                "bounds": "([-13192198.4479,-13188786.2769], [4030333.0107, 4033950.7255])",
                 "filename": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/USGS_LPC_CA_LosAngeles_2016_LAS_2018/ept.json",
                 "type": "readers.ept",
                 "tag": "readdata",
@@ -33,6 +33,12 @@
                 "inputs":["hagged"]
 	        },
             {
+                "type":"filters.range",
+                "limits":"returnnumber[1:1]",
+                "inputs":["hagged"],
+                "tag":"first_returns"
+            },
+            {
              	"filename": "SaMo3_dsm.tiff",
                 "gdalopts": "tiled=yes,     compress=deflate",
                 "nodata": -9999,
@@ -41,13 +47,7 @@
                 "type": "writers.gdal",
                 "window_size": 6,
                 "dimension": "Z",
-                "inputs":["hagged"]
-            },
-            {
-                "type":"filters.range",
-                "limits":"returnnumber[1:1]",
-                "inputs":["hagged"],
-                "tag":"first_returns"
+                "inputs":["first_returns"]
             },
             {
                 "filename": "SaMo3_chm.tiff",
@@ -73,7 +73,7 @@
                 "output_type": "idw",
                 "resolution": 0.6,
                 "type": "writers.gdal",
-                "window_size": 6,
+                "window_size": 70,
                 "dimension": "Z",
                 "inputs":["ground"]
             }
