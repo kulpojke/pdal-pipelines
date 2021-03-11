@@ -24,58 +24,49 @@
             },
             {
                 "type":"filters.range",
-                "limits":"HeightAboveGround[0:35]",
-                "tag":"hagged"
+                "limits":"HeightAboveGround[0:35]"
             },
 	        {
 		        "type":"writers.las",
-       		    "filename":"SaMo3.las",
-                "inputs":["hagged"]
+       		    "filename":"SaMo3b.las"
 	        },
             {
                 "type":"filters.range",
-                "limits":"returnnumber[1:1]",
-                "inputs":["hagged"],
-                "tag":"first_returns"
+                "limits":"returnnumber[1:1]"
             },
             {
-             	"filename": "SaMo3_dsm.tiff",
+             	"filename": "SaMo3b_dsm.tiff",
                 "gdalopts": "tiled=yes,     compress=deflate",
                 "nodata": -9999,
                 "output_type": "idw",
                 "resolution": 0.6,
                 "type": "writers.gdal",
                 "window_size": 6,
-                "dimension": "Z",
-                "inputs":["first_returns"]
+                "dimension": "Z"
             },
             {
-                "filename": "SaMo3_chm.tiff",
+                "filename": "SaMo3b_chm.tiff",
                 "gdalopts": "tiled=yes,     compress=deflate",
                 "nodata": -9999,
                 "output_type": "idw",
                 "resolution": 0.6,
                 "type": "writers.gdal",
                 "window_size": 6,
-                "dimension": "HeightAboveGround",
-                "inputs":["first_returns"]
+                "dimension": "HeightAboveGround"
             },
             {
                 "type":"filters.range",
-                "limits":"Classification[2:2]",
-                "inputs":["hagged"],
-                "tag":"ground"
+                "limits":"Classification[2:2]"
             },
             {
-                "filename": "SaMo3_dtm.tiff",
+                "filename": "SaMo3b_dtm.tiff",
                 "gdalopts": "tiled=yes,     compress=deflate",
                 "nodata": -9999,
                 "output_type": "idw",
                 "resolution": 0.6,
                 "type": "writers.gdal",
                 "window_size": 70,
-                "dimension": "Z",
-                "inputs":["ground"]
+                "dimension": "Z"
             }
     ]
 }
